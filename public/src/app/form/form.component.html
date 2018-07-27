@@ -1,0 +1,118 @@
+
+    <div class="row">
+      <p></p>
+      <button (click)="goHome()"
+      class="btn waves-effect waves-light btn-small red" name="edit">cancel
+      <i class="material-icons right">block</i>
+    </button>
+    <h3>{{title}}</h3>
+
+    <p>buttons dont disable, something to do with the name of the form being undefined</p>
+    </div>
+
+<div class="row hoverable z-depth-2 col s6">
+    <form  #formData='ngForm'
+      class="col s6 ">
+      <div class="row">
+      <!-- remove an input -->
+      <!-- <div *ngIf="!editFormBtn"
+      class="row"> -->
+
+        <div *ngIf="!editFormBtn" class="input-field col s6">
+
+          <label for="name">name</label>
+
+          <input
+            [(ngModel)]="formObj.name"
+            type="text" name="formObj.name" class="validate" required minlength="3" #name="ngModel">
+
+          <span class="helper-text" data-error="must be at least 3 characters" data-success="valid name"></span>
+          <span class="helper-text red" *ngIf="errors">{{ errors.name }}</span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s6">
+          <label for="name">(type) name</label>
+          <input type="text" name="formObj.type" [(ngModel)]="formObj.type" class="validate" required minlength="3" #type="ngModel">
+          <span class="helper-text" data-error="your name must be at least 3 characters" data-success="valid name"></span>
+          <span class="helper-text red" *ngIf="errors">{{ errors.type }}</span>
+        </div>
+      </div>
+
+      <div *ngIf="editFormBtn" class="row">
+        <div class="input-field col s6">
+          <label for="name">review</label>
+          <input type="text" name="formObj.desc" [(ngModel)]="formObj.desc" class="validate" required minlength="3" #desc="ngModel">
+          <span class="helper-text" data-error="description must be at least 3 characters" data-success="valid description"></span>
+          <span class="helper-text red" *ngIf="errors">{{ errors.desc }}</span>
+        </div>
+      </div>
+
+      <div *ngIf="editFormBtn" class="row">
+        <div class="input-field col s1">
+            <label>stars</label>
+        </div>
+        <div class="input-field col s4">
+          <select name="formObj.skills" [(ngModel)]="formObj.skills" class="browser-default validate"
+          required minlength="1" maxlength="5" #skills="ngModel">
+            <option value="" disabled selected>stars</option>
+            <option value="★☆☆☆☆">★☆☆☆☆</option>
+            <option value="★★☆☆☆">★★☆☆☆</option>
+            <option value="★★★☆☆">★★★☆☆</option>
+            <option value="★★★★☆">★★★★☆</option>
+            <option value="★★★★★">★★★★★</option>
+          </select>
+          <span class="helper-text" data-error="stars must be at least 1" data-success="good"></span>
+          <span class="helper-text red" *ngIf="errors">{{ errors }}</span>
+        </div>
+      </div>
+
+    </form>
+
+</div>
+
+<!-- buttons -->
+  <div class="row">
+      <div *ngIf="formData.valid"  class="col s12">
+          <!-- this adds a new object even obside the form -->
+          <!-- create parent -->
+        <div class="col s4">
+          <button (click)="newObjToService(formObj)"
+
+          [disabled]="!formData.valid +  editFormBtn + homeEdit"
+
+          class="btn waves-effect waves-light btn-small white" type="submit" name="action">add
+          <i class="material-icons right">add_box</i>
+        </button>
+      </div>
+
+        <!-- create child 1 -->
+      <div *ngIf="formData.valid" class="col s4">
+        <button (click)="newReview(formObj)"
+        [disabled]=" !editFormBtn  + !formData.valid"
+        class="btn waves-effect waves-light btn-small white" name="edit">review
+          <i class="material-icons right">edit</i>
+        </button>
+      </div>
+
+        <!-- edit -->
+      <div *ngIf="formData.valid"  class="col s4">
+        <button (click)="editFromService(formObj)"
+        [disabled]="!homeEdit + !formData.valid"
+        class="btn waves-effect waves-light btn-small white" name="edit">edit
+          <i class="material-icons right">edit</i>
+        </button>
+      </div>
+
+      </div>
+    </div>
+
+  <!-- !editFormBtn + !name.valid + !type.valid + !desc.valid  -->
+
+      <!-- <div class="row">
+        <i *ngIf="formObj.valid"
+          class="material-icons">
+          check
+        </i>
+      </div> -->

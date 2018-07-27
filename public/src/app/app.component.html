@@ -1,0 +1,21 @@
+<nav>
+  <div class="nav-wrapper">
+    <div class="col s12">
+        <a class="brand-logo center">{{title}}</a>
+        <ul id="nav-mobile" class="left hide-on-med-and-down">
+            <li *ngFor="let x of routes"><a [routerLink]="['', x.route ]">{{x.name}}</a></li>
+          </ul>
+    </div>
+  </div>
+</nav>
+<div class="container" >
+
+  <router-outlet></router-outlet>
+
+  <app-form *ngIf="editObj" [homeEdit]="editObj" ></app-form>
+
+
+
+</div>
+
+

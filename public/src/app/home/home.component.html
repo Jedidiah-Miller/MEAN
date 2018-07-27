@@ -1,0 +1,48 @@
+
+    <div class="row">
+        <p>{{title}}</p>
+      <button [routerLink]="['', 'new' ]"
+        class="btn waves-effect waves-light btn-small blue" name="add">add
+          <i class="material-icons right">add</i>
+      </button>
+      <p>{{now}}</p>
+
+    </div>
+
+    <table class="highlight z-depth-2">
+        <thead>
+          <tr>
+            <h3>
+              list
+            </h3>
+          </tr>
+          <tr>
+              <th>name</th>
+              <th>type</th>
+              <th>action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let x of allObjects">
+            <td><a>{{x.name}}</a>
+              timestamp - {{x.createdAt}}
+              <i *ngIf="x.review.length > 4" class="material-icons secondary-content">whatshot</i></td>
+            <td>{{x.type}}</td>
+            <td>
+              <button
+              (click)="goToInfo( x._id )"
+              class=" btn-small waves-effect waves-light btn-flat">info<i class="material-icons right  ">info</i></button>
+
+              <a (click)="goToForm( x )" class=" btn-small waves-effect waves-light blue">update<i class="material-icons blue right ">edit</i></a>
+
+              <a
+              (click)="deleteFromService(x._id)" class=" waves-effect waves-purple secondary-content"><i class=" waves-effect waves material-icons ">delete</i></a>
+
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+
+      <app-form *ngIf="editObj" [homeEdit]="editObj" ></app-form>
+

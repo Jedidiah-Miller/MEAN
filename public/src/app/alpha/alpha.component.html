@@ -1,0 +1,52 @@
+
+    <h3>{{title}}</h3>
+    <div class="row">
+      <!-- <button  (click)="deleteFromService(objData._id)" class="btn waves-effect waves-light btn-small red" type="submit" name="action">delete
+        <i class="material-icons right">delete</i>
+      </button> -->
+      <a (click)="goToForm( objData._id )" class=" btn-small waves-effect waves-light blue">update<i class="material-icons blue right ">edit</i></a>
+      </div>
+<div class="row">
+<h5>reviews</h5>
+</div>
+
+    <div class="row">
+      <div *ngFor="let x of properties"
+      class="col s12 hoverable z-depth-2">
+        <table class="highlight">
+            <thead>
+              <tr>
+                <h3>
+
+                  <i *ngIf="x.length > 4" class="material-icons secondary-content">whatshot</i>
+                </h3>
+                <th></th>
+                <th><p *ngIf="x.length === 0 " >be the first to add one</p></th>
+                <th>
+                  <a
+                    (click)="goHome()" class="btn-floating btn-large waves-effect waves-light"><i class="material-icons blue ">home</i>
+                  </a>
+                </th>
+
+              </tr>
+              <tr>
+                <th>reviewer</th>
+                <th>stars</th>
+                <th>reviews</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor ="let y of x">
+                <td>{{y.type}}</td>
+                <td>{{y.skills}}</td>
+                <td>{{y.desc}}</td>
+                <td></td>
+
+              </tr>
+            </tbody>
+          </table>
+      </div>
+    </div>
+
+    <p>sort by stars - descending, most stars on top</p>
